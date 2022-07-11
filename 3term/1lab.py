@@ -1,9 +1,3 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
 def main():
     # Функция main позволяет ввести значения с клавиатуры
     # и запустить вычисление действия калькулятора
@@ -13,6 +7,7 @@ def main():
     print(type(operand1), type(operand2))
     result = calculate(operand1, operand2, action)
     print("Результат вычисления:", result)
+
 
 def calculate(op1, op2, act):
     # 2-3 дополнительных действия с двумя операндами
@@ -50,18 +45,29 @@ def calculate(op1, op2, act):
         res = "Операция не распознана"
 
     if not isinstance(res, str) and res.is_integer():
-        result = int(res)
+        res = int(res)
 
     return res
+
 
 def test_sum():
     assert calculate(1, 2, "+") == 3
 
+
+def test_divide():
+    assert calculate(7, 3, "//") == 2
+
+
+def test_mod():
+    assert calculate(9, 2, "%") == 1
+
+
 def test_type_of_result_sum():
     assert type(calculate(1, 2, "+")) is int
+
 
 main()
 test_sum()
 test_type_of_result_sum()
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+test_divide()
+test_mod()
