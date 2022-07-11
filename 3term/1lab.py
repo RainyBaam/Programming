@@ -12,12 +12,12 @@ def main():
     action = input("Введите действие: ")
     print(type(operand1), type(operand2))
     result = calculate(operand1, operand2, action)
-    if not isinstance(result, str) and result.is_integer():
-        result = int(result)
     print("Результат вычисления:", result)
 
 def calculate(op1, op2, act):
     # 2-3 дополнительных действия с двумя операндами
+    op1 = float(op1)
+    op2 = float(op2)
     if act == "+":
         res = op1 + op2
     elif act == "-":
@@ -48,6 +48,9 @@ def calculate(op1, op2, act):
             res = "Деление на ноль невозможно"
     else:
         res = "Операция не распознана"
+
+    if not isinstance(res, str) and res.is_integer():
+        result = int(res)
 
     return res
 
