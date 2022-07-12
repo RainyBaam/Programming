@@ -1,3 +1,6 @@
+import math
+
+
 def main():
     """
      Функция main позволяет ввести значения с клавиатуры
@@ -9,6 +12,22 @@ def main():
     print(type(operand1), type(operand2))
     result = calculate(operand1, operand2, action)
     print("Результат вычисления:", result)
+
+
+def standard_deviation(*args):
+    """
+    Функция вычисляет среднеквадратическое отклонение из
+    произвольного числа аргументов в виде кортежа
+    """
+    arith_mean = 0
+    sum_squares = 0
+    for arg in args:
+        arith_mean += arg
+    arith_mean /= len(args)
+    for arg in args:
+        sum_squares += (arg - arith_mean)**2
+    deviation = math.sqrt(sum_squares / len(args))
+    return float("{:.5f}".format(deviation))
 
 
 def calculate(op1, op2, act):
@@ -66,8 +85,15 @@ def test_type_of_result_sum():
     assert type(calculate(1, 2, "+")) is int
 
 
-main()
-test_sum()
-test_type_of_result_sum()
-test_divide()
-test_mod()
+def test_standard_deviation():
+    assert standard_deviation(45, 45, 32, 65, 999) == 381.04614
+
+
+# main()
+arguments = (1, 9, 234, 45, 54)
+print(standard_deviation(*arguments))
+test_standard_deviation()
+# test_sum()
+# test_type_of_result_sum()
+# test_divide()
+# test_mod()
