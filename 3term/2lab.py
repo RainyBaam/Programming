@@ -14,6 +14,23 @@ def main():
     print("Результат вычисления:", result)
 
 
+settings = {'precision': '0.00001'}
+
+
+def convert_precision(precision='0.00001'):
+    if type(precision) is float:
+        precision = str(precision)
+    for i in range(len(precision)):
+        if float(precision) * 10**i >= 1:
+            return i
+
+
+def convert_precision_1(**kwargs):
+    precision = kwargs.get('precision')
+    if precision is None:
+        precision = '0.0001'
+
+
 def standard_deviation(*args):
     """
     Функция вычисляет среднеквадратическое отклонение из
@@ -89,10 +106,27 @@ def test_standard_deviation():
     assert standard_deviation(45, 45, 32, 65, 999) == 381.04614
 
 
+def test_cp_with_1():
+    assert convert_precision('0.1') == 1, "Должна быть 1"
+
+
+def test_cp_with_2():
+    assert convert_precision('0.01') == 2, "Должно быть 2"
+
+
+def test_cp_with_5():
+    assert convert_precision('0.00001') == 5, "Должно быть 5"
+
+
+def test_cp_with_5_as_float():
+    assert convert_precision(0.00001) == 5, "Должно быть 5"
+
+
 # main()
-arguments = (1, 9, 234, 45, 54)
-print(standard_deviation(*arguments))
-test_standard_deviation()
+print(convert_precision(0.0001))
+# arguments = (1, 9, 234, 45, 54)
+# print(standard_deviation(*arguments))
+# test_standard_deviation()
 # test_sum()
 # test_type_of_result_sum()
 # test_divide()
