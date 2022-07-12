@@ -1,6 +1,8 @@
 def main():
-    # Функция main позволяет ввести значения с клавиатуры
-    # и запустить вычисление действия калькулятора
+    """
+     Функция main позволяет ввести значения с клавиатуры
+     и запустить вычисление действия калькулятора
+    """
     operand1 = float(input("Введите 1 число:"))
     operand2 = float(input("Введите 2 число:"))
     action = input("Введите действие: ")
@@ -10,9 +12,7 @@ def main():
 
 
 def calculate(op1, op2, act):
-    # 2-3 дополнительных действия с двумя операндами
-    op1 = float(op1)
-    op2 = float(op2)
+
     if act == "+":
         res = op1 + op2
     elif act == "-":
@@ -44,7 +44,7 @@ def calculate(op1, op2, act):
     else:
         res = "Операция не распознана"
 
-    if not isinstance(res, str) and res.is_integer():
+    if isinstance(res, float) and res.is_integer():
         res = int(res)
 
     return res
