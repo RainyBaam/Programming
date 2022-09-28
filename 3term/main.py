@@ -120,49 +120,4 @@ def calculate(op1, op2, act, precision=None):
     return res
 
 
-def test_sum():
-    assert calculate(1, 2, "+") == 3
-
-
-def test_divide():
-    assert calculate(7, 3, "//") == 2
-
-
-def test_mod():
-    assert calculate(9, 2, "%") == 1
-
-
-def test_type_of_result_sum():
-    assert type(calculate(1, 2, "+")) is int
-
-
-def test_standard_deviation():
-    assert standard_deviation(45, 45, 32, 65, 999, precision=0.00001) == 381.04614
-
-
-def test_cp_with_1():
-    assert convert_precision('0.1') == 1, "Должна быть 1"
-
-
-def test_cp_with_2():
-    assert convert_precision('0.01') == 2, "Должно быть 2"
-
-
-def test_cp_with_5():
-    assert convert_precision('0.00001') == 5, "Должно быть 5"
-
-
-def test_cp_with_5_as_float():
-    assert convert_precision(0.00001) == 5, "Должно быть 5"
-
-
 main()
-test_standard_deviation()
-test_sum()
-test_type_of_result_sum()
-test_cp_with_1()
-test_cp_with_2()
-test_cp_with_5()
-test_cp_with_5_as_float()
-test_divide()
-test_mod()
