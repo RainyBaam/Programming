@@ -1,5 +1,5 @@
 import unittest
-from calculator import *
+from .calculator import *
 
 global PARAMS
 
@@ -34,7 +34,3 @@ class MyTestCase(unittest.TestCase):
 
     def test_cp_with_5_as_float(self):
         self.assertEqual(convert_precision(0.00001), 5, "Должно быть 5")
-
-
-if __name__ == '__main__':
-    unittest.main()

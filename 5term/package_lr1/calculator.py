@@ -1,5 +1,4 @@
 import math
-import calc_print
 
 PARAMS = {'precision': None,
         'output_type': None,
@@ -7,7 +6,7 @@ PARAMS = {'precision': None,
         'dest': None}
 
 
-def load_params(file="params.ini"):
+def load_params(file='params.ini'):
     """
         Функция записи параметров из файла в словарь PARAMS
         На вход поступает имя файла, в процессе выполнения
@@ -27,7 +26,6 @@ def load_params(file="params.ini"):
             PARAMS[param[0]] = param[1]
     except FileNotFoundError:
         print("Файл с параметрами не найден")
-        sys.exit()
 
 
 def convert_precision(precision):
@@ -40,22 +38,6 @@ def convert_precision(precision):
     if type(precision) is float:
         precision = str(f'{precision:f}')
     for i in range(len(str(precision))):
-        if float(precision) * 10**i >= 1:
-            return i
-
-
-def convert_precision_alt(**kwargs):
-    """
-    Альтернативная функция конвертации точности,
-    здесь аргумент берется из словаря с заданной точностью
-    вместо обычного числа или строки
-    """
-    precision = kwargs.get('precision')
-    if precision is None:
-        precision = '0.001'
-    if type(precision) is float:
-        precision = str(precision)
-    for i in range(len(precision)):
         if float(precision) * 10**i >= 1:
             return i
 
@@ -77,7 +59,7 @@ def standard_deviation(*args, **kwargs):
     return round(deviation, precision)
 
 
-def user_input():
+def calculator():
     args = []
     values_counter = input("Введите кол-во значений для вычисления: ")
     for counter in range(0, int(values_counter)):
@@ -99,13 +81,16 @@ def user_input():
           "Доступные действия: +, -, *, /, ^, //, %")
     action = input()
     result = calculate(*args, action, **PARAMS)
-    calc_print.print_results(*args, action=action, result=result)
-    calc_print.write_log(*args, action=action, result=result, file=PARAMS['dest'])
+
+    for arg in args:
+        print("| " + str(arg), end=" ")
+    print("| " + str(action) + " | ", end="")
+    print("result: " + str(result) + " |")
 
 
 def digits_round(result, precision):
     """
-    Функция позволяет округлять вещественные числа 
+    Функция позволяет округлять вещественные числа
     по точности precision
     """
     if type(result) == float and not result.is_integer():
@@ -178,12 +163,3 @@ def calculate(*args, **kwargs):
     if isinstance(res, float) and res.is_integer():
         res = int(res)
     return res
-
-
-if __name__ == '__main__':
-    """
-         main позволяет ввести значения с клавиатуры
-         и запустить вычисление действия калькулятора
-    """
-    load_params()
-    user_input()
