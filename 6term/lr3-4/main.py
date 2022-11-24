@@ -19,7 +19,7 @@
 import pandas as pd  # импортирование библиотеки для считывания данных
 from numpy import isnan  # импортирование функции isnan для проверки на "not a number"
 
-# считаем данных из файла, в качестве столбца индексов используем PassengerId
+# считаем данные из файла, в качестве столбца индексов используем PassengerId
 data = pd.read_csv('train.csv', index_col="PassengerId")
 
 
